@@ -1,10 +1,11 @@
 
-import fs from 'fs';
+import { writeFile, readFile } from 'fs/promises';
+
 
 // console.log(fs.Dir);
 // console.log(fs.appendFile);
 
-import { open } from 'fs/promises';
+//import { open } from 'fs/promises';
 /*
 let filehandle;
 try {
@@ -29,11 +30,19 @@ try {
   //const data = fs.readFileSync('hello.txt');
 
 
-  fs.writeFileSync('hello.txt', 'Ashraf, Web Developer!');
-  //if we use two write file sync then it will replace the above text with this text
-  fs.writeFileSync('hello.txt', 'This text has replaced above text');
-  console.log('File written successfully');
-  fs.writeFileSync('hello.txt', 'This text has replaced above text');
-  console.log('File written successfully');
-  const data = fs.readFileSync('hello.txt');
-  console.log(data.toString());
+  try {
+    // Writing to the file
+    await writeFile('hello.txt', 'Ashraf, Web Developer!');
+    
+    // This will replace the previous text
+    await writeFile('hello.txt', 'This text has replaced above text');
+    
+    console.log('File written successfully');
+  
+    // Reading from the file
+    const data = await readFile('hello.txt');
+    console.log(data.toString());
+  } catch (err) {
+    console.error('Error:', err);
+  }
+console.log('Test Async');
