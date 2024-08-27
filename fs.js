@@ -30,6 +30,10 @@ try {
 
 
   fs.writeFileSync('hello.txt', 'Ashraf, Web Developer!');
+  //if we use two write file sync then it will replace the above text with this text
+  fs.writeFileSync('hello.txt', 'This text has replaced above text');
+  console.log('File written successfully');
+  fs.writeFileSync('hello.txt', 'This text has replaced above text');
   console.log('File written successfully');
   const data = fs.readFileSync('hello.txt');
   console.log(data.toString());
