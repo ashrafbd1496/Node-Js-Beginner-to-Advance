@@ -1,16 +1,18 @@
-import EventEmitter from 'events';
+import EventEmitter from "events";
 // Create an instance of EventEmitter
+
 const eventEmitter = new EventEmitter();
 
 // Define a listener for a specific event
-eventEmitter.on('myEvent', () => {
-  console.log('Loadeding...');
+eventEmitter.on("myEvent", ({ period, text }) => {
+  console.log(`Loading... ${period} ${text}`);
 });
 
-
-// Trigger the event
+// Trigger the event after a delay (simulating a loading process)
 setTimeout(() => {
-  eventEmitter.emit('myEvent');
-  console.log('Event triggered');
-}, 2000)
-
+  eventEmitter.emit("myEvent", {
+    period: "Second",
+    text: "Period Ended",
+  });
+  console.log("Event triggered");
+}, 2000);
