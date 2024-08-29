@@ -1,39 +1,22 @@
-//console.log(global);
-// setTimeout(() => {
-//   console.log("Node js setTimeout!");
-// }, 1000);
-/*
-console.log(__dirname);
-const _ = require("lodash");
-const people = ["Ashraf", "jahid", "Lois", "fahim"];
-//console.log(_.toUpper(people));
-*/
-//assert
-/*
-var assert = require('assert');
-console.log(assert(8 > 7));
-*/
+import http from "http";
 
-/*dns
-var dns = require('dns');
-var w3 = dns.lookup('ashrafbd.com', function (err, addresses, family) {
-  console.log(addresses);
-});
-*/
-/*readline 
-var readline = require('readline');
-var fs = require('fs');
+const hostname = "127.0.0.1";
+const port = 3000;
 
-var myInterface = readline.createInterface({
-  input: fs.createReadStream('index.js')
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "text/plain");
+  res.end(`Hello, Nodejs!\nHostname: ${hostname}\nPort: ${port}`);
 });
 
-var lineno = 0;
-myInterface.on('line', function (line) {
-  lineno++;
-  console.log('Line number ' + lineno + ': ' + line);
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
-*/
 
-const os = require('os');
-console.log(os.homedir());
+//to stop server after sometime
+// কিছু সময় পরে সার্ভারটি বন্ধ করা হচ্ছে
+setTimeout(() => {
+  server.close(() => {
+    console.log("Server stopped.");
+  });
+}, 300000); // 5 সেকেন্ড পরে সার্ভারটি বন্ধ করা হবে
